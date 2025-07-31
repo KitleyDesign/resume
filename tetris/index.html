@@ -1,14 +1,11 @@
-<!DOCTYPE html>
-<html lang="hu">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Tetris</title>
-  <link href="style.css" rel="stylesheet" />
-</head>
 <body>
-  <div class="container">
-    <h1>Tetris</h1>
+  <div id="mobile-warning" class="hidden">
+    <h2>Ez az oldal csak számítógépes böngészőből érhető el.</h2>
+  </div>
+
+  <div class="container" id="game-wrapper">
+    <!-- játék és eredménytábla itt marad -->
+    <h1>Tetris - Építész minimal</h1>
     <canvas id="tetris" width="240" height="400"></canvas>
     <div class="sidepanel">
       <div class="score-panel">
@@ -24,4 +21,3 @@
 
   <script src="game.js"></script>
 </body>
-</html>
