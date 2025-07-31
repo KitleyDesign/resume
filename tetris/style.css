@@ -1,38 +1,66 @@
 body {
-  background-color: #f8f1f1;
+  background-color: #fff0f5; /* púderes háttér */
   font-family: 'Quicksand', sans-serif;
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  margin: 0;
-  padding: 20px;
-  color: #555;
+  justify-content: center;
+  align-items: flex-start;
+  min-height: 100vh;
+  margin: 20px;
+  color: #880e4f;
 }
 
-.title {
-  font-weight: 600;
-  font-size: 2rem;
-  margin-bottom: 20px;
-  color: #c3aed6;
-}
-
-.tetris-wrapper {
+.container {
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  background-color: #ffffff;
-  padding: 20px;
-  border-radius: 16px;
-  box-shadow: 0 8px 16px rgba(0,0,0,0.05);
+  gap: 20px;
+}
+
+h1 {
+  font-weight: 700;
+  margin-bottom: 10px;
+  text-align: center;
+  width: 100%;
+  color: #ad1457;
 }
 
 canvas {
-  border: 2px solid #eac7c7;
-  background-color: #fff;
+  border: 2px solid #ad1457;
+  background-color: #fff5f8;
+  display: block;
+  margin: 0 auto;
 }
 
-.info {
+.sidepanel {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  min-width: 180px;
+}
+
+.score-panel, .scoreboard {
+  background-color: #f8bbd0;
+  border-radius: 10px;
+  padding: 15px;
+  box-shadow: 0 4px 6px rgba(173, 20, 87, 0.3);
+}
+
+#score {
+  font-size: 3rem;
+  font-weight: 700;
+  color: #880e4f;
+  text-align: center;
+  letter-spacing: 0.05em;
   margin-top: 10px;
-  font-weight: 500;
-  font-size: 1.1rem;
+  user-select: none;
+}
+
+.scoreboard ol {
+  padding-left: 20px;
+  margin: 0;
+}
+
+.scoreboard li {
+  font-size: 1.2rem;
+  margin-bottom: 6px;
+  color: #4a148c;
+  user-select: none;
 }
