@@ -5,7 +5,6 @@ context.scale(20, 20);
 const arenaWidth = 12;
 const arenaHeight = 20;
 
-// Üres játéktér létrehozása
 function createMatrix(w, h) {
   const matrix = [];
   while (h--) {
@@ -14,7 +13,6 @@ function createMatrix(w, h) {
   return matrix;
 }
 
-// Tetrimino alakzatok
 const pieces = {
   'T': [
     [0, 0, 0],
@@ -53,16 +51,15 @@ const pieces = {
   ]
 };
 
-// Színek hozzáadása
 const colors = [
   null,
-  '#FFB6C1', // világos rózsaszín (púderes)
-  '#FFC0CB', // púder
-  '#FF69B4', // forró rózsaszín
-  '#FF1493', // mély rózsaszín
-  '#DB7093', // közepes púder
-  '#FFA07A', // lazacos
-  '#FF6347'  // paradicsom
+  '#FFB6C1',
+  '#FFC0CB',
+  '#FF69B4',
+  '#FF1493',
+  '#DB7093',
+  '#FFA07A',
+  '#FF6347'
 ];
 
 const arena = createMatrix(arenaWidth, arenaHeight);
@@ -103,13 +100,11 @@ function merge(arena, player) {
 }
 
 function rotate(matrix, dir) {
-  // Transzponálás
   for(let y = 0; y < matrix.length; ++y) {
     for(let x = 0; x < y; ++x) {
       [matrix[x][y], matrix[y][x]] = [matrix[y][x], matrix[x][y]];
     }
   }
-  // Forgatás irányának kezelése
   if(dir > 0) {
     matrix.forEach(row => row.reverse());
   } else {
@@ -126,8 +121,19 @@ function playerReset() {
 
   if(collide(arena, player)) {
     arena.forEach(row => row.fill(0));
+
+    // Játék vége - kérjük be a nevet és mentsük az eredményt
+    let name = prompt('Game Over! Add meg a neved (max 10 karakter):');
+    if(name === null || name.trim() === '') {
+      name = 'Anon';
+    }
+    name = name.trim().substring(0,10);
+
+    addScore(name, player.score);
+
     player.score = 0;
     updateScore();
+    updateScoreboard();
   }
 }
 
@@ -136,9 +142,9 @@ function playerDrop() {
   if(collide(arena, player)) {
     player.pos.y--;
     merge(arena, player);
-    playerReset();
     sweepArena();
     updateScore();
+    playerReset();
   }
   dropCounter = 0;
 }
@@ -193,42 +199,8 @@ function drawMatrix(matrix, offset) {
 }
 
 function draw() {
-  context.fillStyle = '#fff0f5'; // púderes háttér
+  context.fillStyle = '#fff0f5';
   context.fillRect(0, 0, canvas.width, canvas.height);
 
   drawMatrix(arena, {x:0, y:0});
-  drawMatrix(player.matrix, player.pos);
-}
-
-function update(time = 0) {
-  const deltaTime = time - lastTime;
-  lastTime = time;
-
-  dropCounter += deltaTime;
-  if(dropCounter > dropInterval) {
-    playerDrop();
-  }
-
-  draw();
-  requestAnimationFrame(update);
-}
-
-function updateScore() {
-  document.getElementById('score').innerText = player.score;
-}
-
-document.addEventListener('keydown', event => {
-  if(event.key === 'ArrowLeft') {
-    playerMove(-1);
-  } else if(event.key === 'ArrowRight') {
-    playerMove(1);
-  } else if(event.key === 'ArrowDown') {
-    playerDrop();
-  } else if(event.key === 'ArrowUp') {
-    playerRotate(1); // forgatás óramutató járásával megegyezően
-  }
-});
-
-playerReset();
-updateScore();
-update();
+  drawMatrix(player.matrix
