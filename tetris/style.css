@@ -1,0 +1,38 @@
+body {
+  background-color: #f8f1f1;
+  font-family: 'Quicksand', sans-serif;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 0;
+  padding: 20px;
+  color: #555;
+}
+
+.title {
+  font-weight: 600;
+  font-size: 2rem;
+  margin-bottom: 20px;
+  color: #c3aed6;
+}
+
+.tetris-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #ffffff;
+  padding: 20px;
+  border-radius: 16px;
+  box-shadow: 0 8px 16px rgba(0,0,0,0.05);
+}
+
+canvas {
+  border: 2px solid #eac7c7;
+  background-color: #fff;
+}
+
+.info {
+  margin-top: 10px;
+  font-weight: 500;
+  font-size: 1.1rem;
+}
